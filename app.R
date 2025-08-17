@@ -1,6 +1,7 @@
 library(shiny)
 
 ui <- fluidPage(
+  #output
   plotOutput("plot")
 )
 
@@ -13,3 +14,4 @@ server <- function(input, output, session) {
 }
 
 shinyApp(ui, server)
+
