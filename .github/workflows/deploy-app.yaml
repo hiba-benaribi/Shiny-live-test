@@ -12,11 +12,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: r-lib/actions/setup-r@v2
       - name: Install packages
-        run: |
-          install.packages("shinylive")
+        run: R -e 'install.packages("shinylive")'
       - name: Deploy
-        run: |
-          R -e "shinylive::export('.', 'site')"
+        run: R -e 'shinylive::export(".", "site")'
       - name: Push to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
