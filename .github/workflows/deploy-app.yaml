@@ -10,19 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      # Setup R
       - uses: r-lib/actions/setup-r@v2
 
-      # Install shinylive package
-      - name: Install shinylive
-        run: R -e 'install.packages("shinylive", repos="https://cloud.r-project.org")'
+      # Install shinylive AND export in same step
+      - name: Install shinylive and export app
+        run: |
+          R -e 'install.packages("shinylive", repos="https://cloud.r-project.org"); 
+                library(shinylive); 
+                shinylive::export(".", "site")'
 
-      # Export app to static site
-      - name: Export Shiny app
-        run: R -e 'library(shinylive); shinylive::export(".", "site")'
-
-      # Push to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
