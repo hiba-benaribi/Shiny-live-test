@@ -1,1 +1,0 @@
-[{"name":"app.R","content":"library(shiny)\r\n\r\nui <- fluidPage(\r\n  plotOutput(\"plot\")\r\n)\r\n\r\nserver <- function(input, output, session) {\r\n  output$plot <- renderPlot({\r\n    x <- rnorm(100)\r\n    y <- -log10(runif(100))\r\n    plot(x, y, pch = 19, col = \"blue\", main = \"Base R Volcano Plot\")\r\n  })\r\n}\r\n\r\nshinyApp(ui, server)\r\n","type":"text"}]
